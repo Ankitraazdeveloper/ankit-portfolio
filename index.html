@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Ankit Raj — BCA student and aspiring software developer.">
+  <title>Ankit Raj | Software Developer Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2e;
+      --panel2: #17223a;
+      --text: #eef3ff;
+      --muted: #a8b4cc;
+      --accent: #73e0c1;
+      --accent2: #86a8ff;
+      --line: rgba(255,255,255,.11);
+      --shadow: 0 18px 55px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--text); background:
+        radial-gradient(circle at 85% 8%, rgba(115,224,193,.13), transparent 27rem),
+        radial-gradient(circle at 5% 30%, rgba(134,168,255,.12), transparent 30rem), var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, calc(100% - 40px)); margin: auto; }
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px); background: rgba(11,16,32,.78); border-bottom: 1px solid var(--line); }
+    nav { min-height: 72px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { font-weight: 800; letter-spacing: .08em; font-size: 1.05rem; }
+    .brand span { color: var(--accent); }
+    .navlinks { display:flex; gap:24px; color:var(--muted); font-size:.92rem; }
+    .navlinks a:hover { color:var(--accent); }
+    .menu { display:none; background:none; border:1px solid var(--line); color:var(--text); border-radius:10px; padding:7px 11px; }
+    .hero { padding: 105px 0 88px; display:grid; grid-template-columns: 1.35fr .65fr; align-items:center; gap:55px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.17em; font-size:.78rem; font-weight:800; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); line-height:1.03; margin:18px 0; letter-spacing:-.055em; }
+    h1 span { color:var(--accent); }
+    .hero p { max-width:650px; color:var(--muted); font-size:1.1rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:13px; margin-top:30px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 19px; border-radius:12px; font-weight:750; border:1px solid var(--line); transition:.2s; }
+    .btn.primary { background:var(--accent); color:#07151a; border-color:var(--accent); }
+    .btn:hover { transform:translateY(-2px); }
+    .profile-card { background:linear-gradient(145deg, rgba(115,224,193,.13), rgba(134,168,255,.1)); border:1px solid var(--line); border-radius:28px; padding:28px; box-shadow:var(--shadow); }
+    .avatar { width:100%; aspect-ratio:1; border-radius:22px; display:grid; place-items:center; font-size:5rem; font-weight:900; color:var(--accent); background:linear-gradient(145deg,#1e3550,#18243b); border:1px solid rgba(255,255,255,.1); }
+    .profile-card h3 { margin:20px 0 4px; font-size:1.3rem; }
+    .profile-card p { margin:0; font-size:.94rem; }
+    .mini-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .tag { border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--muted); border-radius:99px; padding:5px 10px; font-size:.78rem; }
+    section { padding:70px 0; }
+    .section-head { margin-bottom:30px; }
+    .section-head h2 { font-size:clamp(2rem,4vw,2.7rem); letter-spacing:-.04em; margin:5px 0; }
+    .section-head p { color:var(--muted); margin:0; }
+    .about-grid, .project-grid, .skill-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+    .card { background:rgba(18,26,46,.83); border:1px solid var(--line); border-radius:20px; padding:24px; box-shadow:var(--shadow); }
+    .card h3 { margin:0 0 9px; font-size:1.15rem; }
+    .card p { margin:0; color:var(--muted); }
+    .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px; }
+    .fact { padding:14px; border-radius:14px; background:rgba(255,255,255,.04); }
+    .fact strong { display:block; color:var(--accent); font-size:.83rem; }
+    .fact span { color:var(--muted); font-size:.92rem; }
+    .skills { display:flex; flex-wrap:wrap; gap:10px; }
+    .skill { padding:9px 13px; border:1px solid var(--line); border-radius:11px; background:var(--panel2); color:#dce6fb; }
+    .project-card { display:flex; flex-direction:column; min-height:250px; }
+    .project-card .type { color:var(--accent); text-transform:uppercase; font-size:.73rem; font-weight:800; letter-spacing:.13em; }
+    .project-card h3 { font-size:1.3rem; margin:9px 0; }
+    .project-card p { flex:1; }
+    .project-card .stack { margin-top:18px; color:var(--muted); font-size:.84rem; }
+    .timeline { border-left:1px solid rgba(115,224,193,.45); margin-left:8px; padding-left:24px; display:grid; gap:22px; }
+    .timeline-item { position:relative; }
+    .timeline-item:before { content:""; position:absolute; width:10px; height:10px; border-radius:50%; background:var(--accent); left:-30px; top:8px; box-shadow:0 0 0 5px rgba(115,224,193,.12); }
+    .timeline-item h3 { margin:0 0 4px; }
+    .timeline-item p { margin:0; color:var(--muted); }
+    .contact { text-align:center; background:linear-gradient(145deg,rgba(115,224,193,.1),rgba(134,168,255,.08)); border:1px solid var(--line); border-radius:26px; padding:45px 25px; }
+    .contact p { color:var(--muted); }
+    footer { padding:28px 0 40px; color:var(--muted); font-size:.88rem; text-align:center; }
+    @media (max-width:760px) {
+      .hero { grid-template-columns:1fr; padding:75px 0 55px; gap:30px; }
+      .profile-card { max-width:360px; }
+      .about-grid,.project-grid,.skill-grid { grid-template-columns:1fr; }
+      .navlinks { display:none; position:absolute; top:72px; left:0; right:0; padding:18px 22px; flex-direction:column; background:#10182b; border-bottom:1px solid var(--line); }
+      .navlinks.open { display:flex; }
+      .menu { display:block; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#home">ANKIT<span>.</span></a>
+      <button class="menu" id="menuBtn" aria-label="Toggle navigation">Menu</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow">Aspiring Software Developer · BCA Student</div>
+        <h1>Hi, I'm<br><span>Ankit Raj.</span></h1>
+        <p>I'm a BCA student building a strong foundation in software development, Java applications and web technologies. I enjoy turning ideas into practical, user-friendly projects and continuously learning through hands-on work.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore my work</a>
+          <a class="btn" href="mailto:ankitraj70041@gmail.com">Contact me</a>
+        </div>
+      </div>
+      <aside class="profile-card">
+        <div class="avatar" aria-label="Ankit Raj initials">AR</div>
+        <h3>Ankit Raj</h3>
+        <p>BCA · Computer Science</p>
+        <div class="mini-tags"><span class="tag">Java & Swing</span><span class="tag">Web Development</span><span class="tag">Problem Solving</span></div>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">A little about me</div><h2>Curious by nature. Building by practice.</h2><p>A quick introduction to my education and approach.</p></div>
+        <div class="about-grid">
+          <article class="card">
+            <h3>Who I am</h3>
+            <p>I'm pursuing a Bachelor of Computer Applications (BCA) with an interest in software development. I like learning by creating projects, understanding how applications work, and improving them step by step.</p>
+            <div class="facts">
+              <div class="fact"><strong>EDUCATION</strong><span>BCA, Computer Science</span></div>
+              <div class="fact"><strong>COLLEGE</strong><span>Jawahar Lal Nehru College, Dehri</span></div>
+              <div class="fact"><strong>GRADUATION</strong><span>Expected 2027</span></div>
+              <div class="fact"><strong>LOCATION</strong><span>Bihar, India</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>What I value</h3>
+            <p>I believe in consistent learning, clear problem-solving and teamwork. I have also taken responsibility as a team leader and gained experience supporting learners as a tutor and teacher's assistant.</p>
+            <div class="mini-tags"><span class="tag">Teamwork</span><span class="tag">Analytical Thinking</span><span class="tag">Creativity</span><span class="tag">Communication</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">My toolkit</div><h2>Skills & technologies</h2><p>Tools and technologies I've studied or used in projects and practice.</p></div>
+        <div class="card">
+          <div class="skills">
+            <span class="skill">Java</span><span class="skill">Java Swing</span><span class="skill">Java Applet</span>
+            <span class="skill">C Programming</span><span class="skill">HTML</span><span class="skill">CSS</span>
+            <span class="skill">SQL</span><span class="skill">SQLite</span><span class="skill">Responsive Web Design</span>
+            <span class="skill">UI/UX Fundamentals</span><span class="skill">VS Code</span><span class="skill">Apache NetBeans</span>
+            <span class="skill">MS Word</span><span class="skill">MS Excel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">What I've built</div><h2>Featured projects</h2><p>Practical work that demonstrates my learning and development.</p></div>
+        <div class="project-grid">
+          <article class="card project-card">
+            <div class="type">Java · Desktop application</div>
+            <h3>Certificate Generator</h3>
+            <p>A Java Swing desktop application for entering participant details, storing certificate records in an SQLite database, and generating participation certificates as PDF files.</p>
+            <div class="stack">Java 8 · Swing · SQLite · PDFBox</div>
+          </article>
+          <article class="card project-card">
+            <div class="type">Cybersecurity · Job simulation</div>
+            <h3>Deloitte Cybersecurity Simulation</h3>
+            <p>Completed a practical job simulation involving log review, dashboard investigation and identifying suspicious repeated API request activity.</p>
+            <div class="stack">Log analysis · Security awareness · Investigation</div>
+          </article>
+          <article class="card project-card">
+            <div class="type">Web development · Practice</div>
+            <h3>HTML & CSS Websites</h3>
+            <p>Built and practised web pages using HTML and CSS, focusing on page structure, styling and responsive web design fundamentals.</p>
+            <div class="stack">HTML · CSS · Responsive layouts</div>
+          </article>
+          <article class="card project-card">
+            <div class="type">Programming · Coursework</div>
+            <h3>Java GUI & C Programming</h3>
+            <p>Created beginner-level programming exercises and desktop interfaces while strengthening object-oriented programming and problem-solving fundamentals.</p>
+            <div class="stack">Java · Swing · C · NetBeans</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head"><div class="eyebrow">Learning & experience</div><h2>My journey so far</h2></div>
+        <div class="card">
+          <div class="timeline">
+            <div class="timeline-item"><h3>Bachelor of Computer Applications</h3><p>Jawahar Lal Nehru College, Dehri · Expected 2027</p></div>
+            <div class="timeline-item"><h3>Tutor & Teacher's Assistant</h3><p>Supported teaching and learning activities, building communication, patience and teamwork skills.</p></div>
+            <div class="timeline-item"><h3>Training & certifications</h3><p>HTML & CSS completion, AI tools workshop, QuizOff 2026 AI quiz, and MS Word/Excel proficiency.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <div class="eyebrow">Let's connect</div>
+          <h2>Have an opportunity or a project in mind?</h2>
+          <p>I'm open to connecting, learning from others and exploring entry-level opportunities in software development.</p>
+          <a class="btn primary" href="mailto:ankitraj70041@gmail.com">ankitraj70041@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap">© <span id="year"></span> Ankit Raj · Built with HTML, CSS & JavaScript</div></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+    navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navlinks.classList.remove('open')));
+  </script>
+</body>
+</html>
